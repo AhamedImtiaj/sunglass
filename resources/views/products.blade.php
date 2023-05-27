@@ -16,62 +16,30 @@
     </div>
     <div class="container-fluid">
        <div class="row">
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-             <div class="glasses_box">
-                <figure><img src="images/glass1.png" alt="#"/></figure>
-                <h3><span class="blu">$</span>50</h3>
-                <p>Sunglasses</p>
-             </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-             <div class="glasses_box">
-                <figure><img src="images/glass2.png" alt="#"/></figure>
-                <h3><span class="blu">$</span>50</h3>
-                <p>Sunglasses</p>
-             </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-             <div class="glasses_box">
-                <figure><img src="images/glass3.png" alt="#"/></figure>
-                <h3><span class="blu">$</span>50</h3>
-                <p>Sunglasses</p>
-             </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-             <div class="glasses_box">
-                <figure><img src="images/glass4.png" alt="#"/></figure>
-                <h3><span class="blu">$</span>50</h3>
-                <p>Sunglasses</p>
-             </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-             <div class="glasses_box">
-                <figure><img src="images/glass5.png" alt="#"/></figure>
-                <h3><span class="blu">$</span>50</h3>
-                <p>Sunglasses</p>
-             </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-             <div class="glasses_box">
-                <figure><img src="images/glass6.png" alt="#"/></figure>
-                <h3><span class="blu">$</span>50</h3>
-                <p>Sunglasses</p>
-             </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-             <div class="glasses_box">
-                <figure><img src="images/glass7.png" alt="#"/></figure>
-                <h3><span class="blu">$</span>50</h3>
-                <p>Sunglasses</p>
-             </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-             <div class="glasses_box">
-                <figure><img src="images/glass8.png" alt="#"/></figure>
-                <h3><span class="blu">$</span>50</h3>
-                <p>Sunglasses</p>
-             </div>
-          </div>
+         @foreach ( $products as $product )
+            
+        
+         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+            <div class="glasses_box">
+               <figure>
+                 <a href="{{route('single_product',['id'=>$product->id])}}">
+                 <img src="{{('images/'.$product->image)}}" alt="#"/>
+                 </a>
+              </figure>
+               @if($product->sale_price != null)
+               <h3><span class="blu">$</span>{{$product->sale_price}}</h3>
+               <h3 style="text-decoration: line-through;"><span class="blu">$</span>{{$product->price}}</h3>
+
+               @else
+               <h3><span class="blu">$</span>{{$product->price}}</h3>
+               @endif
+               <p>{{$product->name}}</p>
+            </div>
+         </div>
+
+
+
+         @endforeach
           <div class="col-md-12">
              <a class="read_more" href="#">Read More</a>
           </div>
